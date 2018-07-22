@@ -7,21 +7,27 @@ public class Hacker : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         print("Hello Console");
-        ShowMainMenu();
+        ShowMainMenu("Welcome wizard");
     }
 	
-    void ShowMainMenu () {
+    void ShowMainMenu (string greeting) {
         Terminal.ClearScreen();
-        Terminal.WriteLine("What house would you like to be in?    (If you win, you get in the house)");
-        Terminal.WriteLine("");
+        Terminal.WriteLine(greeting);
+        Terminal.WriteLine("What house would you like to be in?    (If you win, you get in the house)\n");
         Terminal.WriteLine("Press 1 for Hufflepuff");
         Terminal.WriteLine("Press 2 for Slytherin");
-        Terminal.WriteLine("Press 3 for Gryffindor");
-        Terminal.WriteLine("");
+        Terminal.WriteLine("Press 3 for Gryffindor\n");
         Terminal.WriteLine("Enter your selection: ");
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void OnUserInput(string input)
+    {
+        if(input == "menu")
+        {
+            ShowMainMenu("Welcome back");
+        }
+        else
+        {
+            print("You didn't choose anything valid");
+        }
+    }
 }
