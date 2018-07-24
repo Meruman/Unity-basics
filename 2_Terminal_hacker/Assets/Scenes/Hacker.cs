@@ -1,8 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Hacker : MonoBehaviour {
+    //Game statement
+    int level;
+    enum Screen { MainMenu, Password, Win };
+    Screen currentScreen = Screen.MainMenu; 
 
 	// Use this for initialization
 	void Start () {
@@ -12,6 +17,7 @@ public class Hacker : MonoBehaviour {
 	
     void ShowMainMenu (string greeting) {
         Terminal.ClearScreen();
+        currentScreen = Screen.MainMenu;
         Terminal.WriteLine(greeting);
         Terminal.WriteLine("What house would you like to be in?    (If you win, you get in the house)\n");
         Terminal.WriteLine("Press 1 for Hufflepuff");
@@ -25,9 +31,34 @@ public class Hacker : MonoBehaviour {
         {
             ShowMainMenu("Welcome back");
         }
+        if (currentScreen == Screen.MainMenu)
+        {
+            RunMainMenu(input);
+        }
+    }
+
+    private void RunMainMenu(string input)
+    {
+        if (input == "1")
+        {
+            level = 1;
+            StartGame();
+        }
+        else if (input == "2")
+        {
+            level = 2;
+            StartGame();
+        }
         else
         {
-            print("You didn't choose anything valid");
+            Terminal.WriteLine("You didn't choose a valid house");
         }
+    }
+
+    void StartGame()
+    {
+        currentScreen = Screen.Password;
+        Terminal.WriteLine("You have choosen house: " + level);
+        Terminal.WriteLine("Type the Password: ");
     }
 }
