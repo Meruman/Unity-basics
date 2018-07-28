@@ -4,10 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hacker : MonoBehaviour {
+    //Game Configuration
+    string[] level1Passwords = { "Yellow", "Helga", "easy", "Password", "algofacil" };
+    string[] level2Passwords = { "Green", "Salasar", "Malfoy", "Voldemort", "Tom riddle" };
+    string[] level3Passwords = { "Red", "Godric", "Hermione", "Potter", "Ronnald" };
+
     //Game statement
     int level;
     enum Screen { MainMenu, Password, Win };
-    Screen currentScreen; 
+    Screen currentScreen;
+    string password;
 
 	// Use this for initialization
 	void Start () {
@@ -46,11 +52,19 @@ public class Hacker : MonoBehaviour {
         if (input == "1")
         {
             level = 1;
+            password = level1Passwords[2]; //todo random
             StartGame();
         }
         else if (input == "2")
         {
             level = 2;
+            password = level2Passwords[3];
+            StartGame();
+        }
+        else if (input == "3")
+        {
+            level = 3;
+            password = level3Passwords[4];
             StartGame();
         }
         else
@@ -69,7 +83,7 @@ public class Hacker : MonoBehaviour {
     {
         if (level == 1)
         {
-            if (input == "algofacil")
+            if (input == password)
             {
                 Terminal.WriteLine("Correct!");
             }
@@ -80,7 +94,18 @@ public class Hacker : MonoBehaviour {
         }
         else if (level == 2)
         {
-            if (input == "algomedio")
+            if (input == password)
+            {
+                Terminal.WriteLine("Correct!");
+            }
+            else
+            {
+                Terminal.WriteLine("Try again");
+            }
+        }
+        else if (level == 3)
+        {
+            if (input == password)
             {
                 Terminal.WriteLine("Correct!");
             }
