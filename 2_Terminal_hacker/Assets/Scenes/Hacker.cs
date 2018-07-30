@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour {
     //Game Configuration
@@ -68,19 +65,19 @@ public class Hacker : MonoBehaviour {
         switch (level)
         {
             case 1:
-                password = level1Passwords[2];
+                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
                 break;
             case 2:
-                password = level2Passwords[3];
+                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
                 break;
             case 3:
-                password = level3Passwords[4];
+                password = level3Passwords[Random.Range(0, level3Passwords.Length)];
                 break;
             default:
                 Debug.LogError("Invalid level number");
                 break;
         }
-        Terminal.WriteLine("Type the Password: ");
+        Terminal.WriteLine("Type the Password: " + password.Anagram());
     }
     void RunPassword(string input)
     {
@@ -88,7 +85,7 @@ public class Hacker : MonoBehaviour {
         {
             if (input == password)
             {
-                Terminal.WriteLine("Correct!");
+                DisplayWinScreen();
             }
             else
             {
@@ -99,7 +96,7 @@ public class Hacker : MonoBehaviour {
         {
             if (input == password)
             {
-                Terminal.WriteLine("Correct!");
+                DisplayWinScreen();
             }
             else
             {
@@ -110,12 +107,47 @@ public class Hacker : MonoBehaviour {
         {
             if (input == password)
             {
-                Terminal.WriteLine("Correct!");
+                DisplayWinScreen();
             }
             else
             {
                 Terminal.WriteLine("Try again");
             }
+        }
+    }
+
+    void DisplayWinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        ShowLevelReward();
+    }
+
+    void ShowLevelReward()
+    {
+        switch (level)
+        {
+            case 1:
+                Terminal.WriteLine("Welcome to Hufflepuff");
+                Terminal.WriteLine(@"
+ ━━━━━━━━☆ﾟ.*･｡ﾟ  12¼''long, Ash, unicorn hair wand
+            "
+                );
+                break;
+            case 2:
+                Terminal.WriteLine("Welcome to Slytherin");
+                Terminal.WriteLine(@"
+━━━━━━━━☆ﾟ.*･｡ﾟ  18'', Elm, dragon heartstring wand
+            "
+                );
+                break;
+            case 3:
+                Terminal.WriteLine("Welcome to Gryffindor");
+                Terminal.WriteLine(@"
+━━━━━━━━☆ﾟ.*･｡ﾟ  11'' long, made of holly, and possessed a phoenix feather core
+            "
+                );
+                break;
         }
     }
 }
