@@ -2,6 +2,7 @@
 
 public class Hacker : MonoBehaviour {
     //Game Configuration
+    const string MenuHint = "You may type 'menu' at any time";
     string[] level1Passwords = { "Yellow", "Helga", "easy", "Password", "algofacil" };
     string[] level2Passwords = { "Green", "Salasar", "Malfoy", "Voldemort", "Tom riddle" };
     string[] level3Passwords = { "Red", "Godric", "Hermione", "Potter", "Ronnald" };
@@ -50,18 +51,25 @@ public class Hacker : MonoBehaviour {
         if (isValidNumber)
         {
             level = int.Parse(input);
-            StartGame();
+            AskForPassword();
         }
         else
         {
-            Terminal.WriteLine("You didn't choose a valid house");
+            Terminal.WriteLine("You didn't choose a valid house \ntry again");
         }
     }
 
-    void StartGame()
+    void AskForPassword()
     {
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
+        SetRandomPassword();
+        Terminal.WriteLine(MenuHint);
+        Terminal.WriteLine("Type the Password, hint: " + password.Anagram());
+    }
+
+    void SetRandomPassword()
+    {
         switch (level)
         {
             case 1:
@@ -77,8 +85,8 @@ public class Hacker : MonoBehaviour {
                 Debug.LogError("Invalid level number");
                 break;
         }
-        Terminal.WriteLine("Type the Password: " + password.Anagram());
     }
+
     void RunPassword(string input)
     {
         if (level == 1)
@@ -89,7 +97,7 @@ public class Hacker : MonoBehaviour {
             }
             else
             {
-                Terminal.WriteLine("Try again");
+                AskForPassword();
             }
         }
         else if (level == 2)
@@ -100,7 +108,7 @@ public class Hacker : MonoBehaviour {
             }
             else
             {
-                Terminal.WriteLine("Try again");
+                AskForPassword();
             }
         }
         else if (level == 3)
@@ -111,7 +119,7 @@ public class Hacker : MonoBehaviour {
             }
             else
             {
-                Terminal.WriteLine("Try again");
+                AskForPassword();
             }
         }
     }
@@ -121,6 +129,7 @@ public class Hacker : MonoBehaviour {
         currentScreen = Screen.Win;
         Terminal.ClearScreen();
         ShowLevelReward();
+        Terminal.WriteLine(MenuHint);
     }
 
     void ShowLevelReward()
