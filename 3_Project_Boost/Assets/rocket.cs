@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class rocket : MonoBehaviour {
-
+    Rigidbody rigidBody;
 	// Use this for initialization
 	void Start () {
-		
+        rigidBody = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -19,15 +19,15 @@ public class rocket : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Space)) //Thruss and rotate at the same time
         {
-            print("Space pressed");
+            rigidBody.AddRelativeForce(Vector3.up);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            print("rotate left");
+            transform.Rotate(Vector3.forward);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            print("Rotate right");
+            transform.Rotate(-Vector3.forward);
         }
     }
 }

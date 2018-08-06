@@ -339,34 +339,3 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e755815b5d48acf428e4167f261490d5, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1650501889 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1672006859131186, guid: b366a8f0c2493994691c144662c68906,
-    type: 2}
-  m_PrefabInternal: {fileID: 484377102}
---- !u!54 &1650501890
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1650501889}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1650501892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1650501889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9857dc11ad891874a9c5311ff05c3ab4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
