@@ -21,6 +21,22 @@ public class rocket : MonoBehaviour {
         Thrust();
         Rotate();
     }
+
+     void OnCollisionEnter(Collision collision) //Manual for collisions: https://docs.unity3d.com/Manual/CollidersOverview.html
+     { // API: https://docs.unity3d.com/ScriptReference/Collider.OnCollisionEnter.html
+         switch (collision.gameObject.tag)
+         {
+             case "Friendly":
+             print ("OK");
+             break;
+             case "Fuel":
+             print("getting Fuel");
+             break;
+             default:
+             print ("Dead");
+             break;
+         }
+     }
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space)) //Thruss and rotate at the same time
